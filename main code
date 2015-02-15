@@ -1,0 +1,88 @@
+import zen.core.Zen;
+
+
+public class Game2048 {
+
+	static int [][] grid = new int[4][4];
+
+	public static void main(String[] args) {
+		Zen.create(400,400);
+		setup();
+
+		while(true)
+		{
+			drawbackground();
+			
+
+		}
+
+	}
+
+	public static void setup(){
+		int x, y;
+		
+		Zen.setFont("arial",40);
+		int count = 0;
+		loop: while(count < 2){
+
+			for( x = 0; x < 4; x ++){
+				
+				for( y = 0; y < 4; y ++){
+					
+					if(count == 2){
+						
+						break loop;
+					}
+					if(Zen.dice(4) == 1){
+						if(Zen.dice(4) == 1){
+							grid[x][y] = 2;
+							count ++;
+						}
+						else {
+							grid [x][y] = 4;
+							count ++;
+						}
+						
+					}
+					
+
+				}
+				
+			}
+		}
+		
+	}
+
+
+
+	public static void drawbackground() {
+		for(int x = 0; x < 4; x ++){
+			for(int y = 0; y < 4; y ++){
+
+
+				if((x + y)%2 == 0){
+					Zen.setColor("black");
+					Zen.fillRect(x * 100, y * 100, 100,100);
+				}
+				else{
+					Zen.setColor("white");
+					Zen.fillRect(x * 100, y * 100, 100,100);
+
+				}
+				if(grid[x][y] != 0){
+					Zen.setColor("red");
+					Zen.drawText("" + grid[x][y], x * 100 + 50, y * 100 + 50);
+
+				}
+
+			}
+
+		}
+		Zen.buffer(1);
+	}
+
+
+
+
+
+}
